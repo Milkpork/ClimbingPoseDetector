@@ -1,4 +1,5 @@
 import math
+
 import cv2
 import numpy as np
 from PIL import Image
@@ -15,18 +16,15 @@ def distance(node1, node2):
         res = math.sqrt((node1[0] - node2[0]) ** 2 + (node1[1] - node2[1]) ** 2)
         return res
     except TypeError:
-        print(node1)
-        print(node2)
-        exit(0)
+        raise ValueError(f"node1:{node1},node2:{node2} value error")
 
 
 class Predictor:
-    mode = 0  # 0为单张图片, 1为视频
     confidence = 0.5
-    distance = 500
-    nearDistance = 500
-    climbTopLine = 200  # 超过这条线则在爬墙
-    wallLine = 500  # 可修改
+    distance = 0
+    nearDistance = 0
+    climbTopLine = 0  # 超过这条线则在爬墙
+    wallLine = 0
     cuda = False
 
     def __init__(self):
